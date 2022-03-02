@@ -140,6 +140,7 @@ public class FaspayPaymentRequest:Mappable{
     public var item : [FaspayPayment]?
     public var reserve1 : String?
     public var reserve2 : String?
+    public var trx_source : String?
     public var signature : String?
     
     
@@ -191,6 +192,7 @@ public     func mapping(map: Map) {
         item <- map["item"]
         reserve1 <- map["reserve1"]
         reserve2 <- map["reserve2"]
+        trx_source <- map["trx_source"]
         signature <- map["signature"]
     }
 }
@@ -381,6 +383,7 @@ public     init?(config:FaspayConfig,bill_data:FaspayPaymentRequestBillData,pc:F
         item = bill_data.item
         reserve1 = ""
         reserve2 = ""
+        trx_source = "iOS SDK"
         pay_type = bill_data.pay_type
         if let userx = config.faspayUser.userId,let passwordx = config.faspayUser.password,let bill = bill_no{
             let raw = userx+passwordx+bill;
